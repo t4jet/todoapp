@@ -1,0 +1,38 @@
+services:
+  app:
+    image: node:18.12-alpine
+    container_name: app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./app:/app/
+    ports:
+      - '3000:3000'
+    tty: true
+  api:
+    container_name: api
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    links:
+      - db
+    tty: true
+    volumes:
+      - ./api:/api/
+  db:
+    image: mysql:8.0.28
+    platform: linux/amd64
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      TZ: "Asia/Tokyo"
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --skip-character-set-client-handshake
+    volumes:
+      - './db/data:/var/lib/mysql'
+      - './my.conf:/etc/mysql/conf.d/my.cnf'
+      - './db/initdb:/docker-entrypoint-initdb.d'
