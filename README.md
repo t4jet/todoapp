@@ -24,3 +24,15 @@ MYSQL_RANDOM_ROOT_PASSWORD:
 `docker exec -it app sh`
 `cd app && npm run dev`
 
+## queryの書き方
+```
+mutation CreateTodo {
+  createTodo(input: {
+    text: "todo"
+    userId:"1"
+  }) {
+    text
+  }
+  
+}
+```
