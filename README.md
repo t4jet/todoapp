@@ -1,3 +1,10 @@
+# 準備
+.envに以下を書き込む
+```
+MYSQL_ROOT_PASSWORD: 
+MYSQL_DATABASE: 
+```
+
 # 実行方法
 ## docker-golang
 `docker build --tag docker-golang .`
