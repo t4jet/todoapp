@@ -7,15 +7,18 @@ package graph
 import (
 	"context"
 	"fmt"
+	"math/rand"
+	"time"
 
 	"github.com/t4jet/gqlgen-tods/graph/model"
 )
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
+	rand.Seed(time.Now().UnixNano())
 	todo := &model.Todo{
 		Text: input.Text,
-		ID:   fmt.Sprintf("T%d", 2),
+		ID:   fmt.Sprintf("T%d", rand.Int31()),
 		User: &model.User{ID: input.UserID, Name: "user " + input.UserID},
 	}
 	r.todos = append(r.todos, todo)
