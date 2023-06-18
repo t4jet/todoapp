@@ -24,6 +24,10 @@ MYSQL_RANDOM_ROOT_PASSWORD:
 `docker exec -it app sh`
 `cd app && npm run dev`
 
+- goを起動
+`docker exec -it api bash`
+`go run server.go`
+
 ## queryの書き方
 ```
 mutation CreateTodo {
