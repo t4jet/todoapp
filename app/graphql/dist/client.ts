@@ -72,7 +72,7 @@ export const GetTodoDocument = gql`
     `;
 export const CreateTodoDocument = gql`
     mutation createTodo {
-  createTodo(input: {text: "todo", userId: "1"}) {
+  createTodo(input: {text: "", userId: ""}) {
     user {
       id
     }
